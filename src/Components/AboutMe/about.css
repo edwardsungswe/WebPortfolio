@@ -1,0 +1,42 @@
+/* styles.css */
+.about-me-container {
+    width: 85%;
+    margin: 50px auto;
+    display: flex;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .about-me-content {
+    flex: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: #ffffff;
+    font-weight: normal;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    max-width: 25%; /* Set the maximum width to 25% of the container */
+    text-align: left;
+    line-height: 2; /* Set to double spaced */
+
+  }
+  
+  .about-me-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .about-me-image img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  

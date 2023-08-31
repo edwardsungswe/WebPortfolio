@@ -21,7 +21,12 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(61, 55, 55);
+}
+/* global.css */
+body {
+  background-color: #1a1919; /* Gray background color */
+  margin: 0; /* Reset default margin */
 }
 
 .App-link {
