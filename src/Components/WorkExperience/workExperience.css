@@ -1,7 +1,7 @@
 .workExperience-container{
-    width: 85%;
-    height: calc(100vh - 100px); /* Adjust the subtracted value as needed */
-    margin: 30px auto; /* Adjust margin as needed */
+    /* width: 85%;
+    height: calc(100vh - 100px);
+    margin: 30px auto;  
     display: flex;
     align-items: center;
     justify-content: center;
@@ -10,5 +10,31 @@
     padding: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
     border-radius: 75px;
-    flex-direction: column;
+    flex-direction: column; */
+    display: flex;
   }
+
+  .rx{
+    background-color: white;
+  }
+
+  .tab{
+    width: 85%;
+    height: calc(100vh - 100px);
+    margin: 30px auto;  
+    /* display: flex; */
+    /* align-items: center; */
+    justify-content: center;
+    background-color: WHITE;
+    /* padding: 20px; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: 75px;
+    align-self: flex-start; /* Align the tabs to the left side */
+
+    /* flex-direction: column;  */
+
+}
+
+.tab1{
+    padding-bottom: 50px;
+}
