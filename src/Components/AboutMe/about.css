@@ -8,6 +8,7 @@
     color: white;
     padding: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: 75px;
   }
   
   .about-me-content {
@@ -25,7 +26,7 @@
     max-width: 25%; /* Set the maximum width to 25% of the container */
     text-align: left;
     line-height: 2; /* Set to double spaced */
-
+    padding-left: 5%;
   }
   
   .about-me-image {
@@ -33,6 +34,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-right: 5%;
   }
   
   .about-me-image img {

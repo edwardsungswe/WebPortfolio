@@ -1,31 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import '@blueprintjs/core/lib/css/blueprint.css';
-import { Tabs, Tab } from "@blueprintjs/core";
+import React, { useState } from "react";
 
-import './workExperience.css';
-const WorkExperience = () => {
+import VTlist from "./VTlist";
+import VTcontent from "./VTcontent";
 
-    
+import "./workExperience.css";
+
+interface ExpData {
+  company: string;
+}
+
+interface JobData {
+  position: string;
+  period: string;
+  details: string[];
+  expData: ExpData;
+}
+
+interface VerticalTabProps {
+  data: JobData[];
+}
+
+function VerticalTab(props: VerticalTabProps) {
+  const [activeTabId, setActiveTabId] = useState<number>(0);
+
+  function btnClick(id: number) {
+    setActiveTabId(id);
+  }
 
   return (
-    <div className='workExperience-container'>
-      <Tabs
-                animate={true}
-                key={"vertical"}
-                vertical={true}
-                className="tab"
-            >
-                <Tab id="tab1" title="Tab1" panel={
-                    <p>Sample Content 1</p>
-                } />
-                
-                <Tab id="tab2" title="Tab2" panel={
-                    <p>Sample Content 2</p>
-                } />
-                <Tabs.Expander /> 
-            </Tabs>
+    <div className="section__Jobs">
+      <div className="section__Jobs-styledTab">
+        <ul className="section__Jobs-styledTabList">
+          {props.data.map((job, index) => (
+            <VTlist
+              key={index}
+              onClick={() => btnClick(index)} // Pass the index as the ID
+              data={job}
+              index={index}
+              activeTabId={activeTabId}
+            />
+          ))}
+        </ul>
+      </div>
+      <div className="section__Jobs-content">
+        {props.data.map((job, index) => (
+          <VTcontent
+            data={job}
+            key={index}
+            index={index}
+            activeTabId={activeTabId}
+          />
+        ))}
+      </div>
     </div>
   );
-};
+}
 
-export default WorkExperience;
+export default VerticalTab;

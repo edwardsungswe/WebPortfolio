@@ -14,7 +14,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  /* background-color: #282c34; */
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -25,7 +26,7 @@
 }
 /* global.css */
 body {
-  background-color: #1a1919; /* Gray background color */
+  background-color: darkgray !important;/* Gray background color */
   margin: 0; /* Reset default margin */
 }
 
