@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/webportfolio/static/css/main.f0c3fdfc.css",
-    "main.js": "/webportfolio/static/js/main.a6f3ecda.js",
-    "static/js/453.9a1b4ee2.chunk.js": "/webportfolio/static/js/453.9a1b4ee2.chunk.js",
-    "static/media/bg-light.png": "/webportfolio/static/media/bg-light.bac0efb485244a522981.png",
-    "static/media/headshot.png": "/webportfolio/static/media/headshot.d472f62c79b2c3397681.png",
-    "static/media/bg-dark.png": "/webportfolio/static/media/bg-dark.f420c6b8458af72de935.png",
-    "static/media/volunteerone.jpeg": "/webportfolio/static/media/volunteerone.c6343f1f3d8dc9caeec6.jpeg",
-    "static/media/pregtracker.jpeg": "/webportfolio/static/media/pregtracker.0e88d2d66594599e0d94.jpeg",
-    "static/media/loadbalancer.jpeg": "/webportfolio/static/media/loadbalancer.020957d47f9ad56606c9.jpeg",
-    "static/media/blockchain.jpeg": "/webportfolio/static/media/blockchain.926e6d6ddddc1dc4cb0c.jpeg",
-    "static/media/bulletin.jpeg": "/webportfolio/static/media/bulletin.e8928d3c372a2bba7ed2.jpeg",
-    "index.html": "/webportfolio/index.html",
-    "main.f0c3fdfc.css.map": "/webportfolio/static/css/main.f0c3fdfc.css.map",
-    "main.a6f3ecda.js.map": "/webportfolio/static/js/main.a6f3ecda.js.map",
-    "453.9a1b4ee2.chunk.js.map": "/webportfolio/static/js/453.9a1b4ee2.chunk.js.map"
+    "main.css": "/WebPortfolio/static/css/main.f2d15801.css",
+    "main.js": "/WebPortfolio/static/js/main.def64ef5.js",
+    "static/js/453.9a1b4ee2.chunk.js": "/WebPortfolio/static/js/453.9a1b4ee2.chunk.js",
+    "static/media/bg-light.png": "/WebPortfolio/static/media/bg-light.bac0efb485244a522981.png",
+    "static/media/headshot.png": "/WebPortfolio/static/media/headshot.d472f62c79b2c3397681.png",
+    "static/media/bg-dark.png": "/WebPortfolio/static/media/bg-dark.f420c6b8458af72de935.png",
+    "static/media/volunteerone.jpeg": "/WebPortfolio/static/media/volunteerone.c6343f1f3d8dc9caeec6.jpeg",
+    "static/media/pregtracker.jpeg": "/WebPortfolio/static/media/pregtracker.0e88d2d66594599e0d94.jpeg",
+    "static/media/loadbalancer.jpeg": "/WebPortfolio/static/media/loadbalancer.020957d47f9ad56606c9.jpeg",
+    "static/media/blockchain.jpeg": "/WebPortfolio/static/media/blockchain.926e6d6ddddc1dc4cb0c.jpeg",
+    "static/media/bulletin.jpeg": "/WebPortfolio/static/media/bulletin.e8928d3c372a2bba7ed2.jpeg",
+    "index.html": "/WebPortfolio/index.html",
+    "main.f2d15801.css.map": "/WebPortfolio/static/css/main.f2d15801.css.map",
+    "main.def64ef5.js.map": "/WebPortfolio/static/js/main.def64ef5.js.map",
+    "453.9a1b4ee2.chunk.js.map": "/WebPortfolio/static/js/453.9a1b4ee2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f0c3fdfc.css",
-    "static/js/main.a6f3ecda.js"
+    "static/css/main.f2d15801.css",
+    "static/js/main.def64ef5.js"
   ]
 }
