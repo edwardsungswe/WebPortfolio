@@ -204,10 +204,15 @@ export default function Timeline({ experience }: TimelineProps) {
                 {active.period}
               </p>
               <div className="border-t border-border mb-5" />
-              {active.description ? (
-                <p className="font-sans text-sm text-muted leading-relaxed">
-                  {active.description}
-                </p>
+              {active.description.length > 0 ? (
+                <ul className="space-y-2">
+                  {active.description.map((bullet, i) => (
+                    <li key={i} className="font-sans text-sm text-muted leading-relaxed flex gap-2">
+                      <span className="text-muted/40 shrink-0">—</span>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
               ) : (
                 <p className="font-sans text-sm text-muted/40 italic">
                   {active.isEducation ? "Education" : "—"}

@@ -52,9 +52,14 @@ export default function ProjectsSection() {
               </p>
               <p className="font-mono text-xs text-muted mb-5">{active.year}</p>
               <div className="border-t border-border mb-5" />
-              <p className="font-sans text-sm text-muted leading-relaxed mb-5">
-                {active.description}
-              </p>
+              <ul className="space-y-2 mb-5">
+                {active.description.map((bullet, i) => (
+                  <li key={i} className="font-sans text-sm text-muted leading-relaxed flex gap-2">
+                    <span className="text-muted/40 shrink-0">—</span>
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
               <div className="flex flex-wrap gap-2 mb-5">
                 {active.tags.map((tag) => (
                   <span
@@ -100,9 +105,14 @@ export default function ProjectsSection() {
           <div key={i} className="flex flex-col gap-1 py-8 border-b border-border">
             <p className="font-mono text-xs text-muted">{project.year}</p>
             <p className="font-serif text-xl font-semibold">{project.title}</p>
-            <p className="font-sans text-sm text-muted leading-relaxed mt-2">
-              {project.description}
-            </p>
+            <ul className="space-y-1 mt-2">
+              {project.description.map((bullet, i) => (
+                <li key={i} className="font-sans text-sm text-muted leading-relaxed flex gap-2">
+                  <span className="text-muted/40 shrink-0">—</span>
+                  {bullet}
+                </li>
+              ))}
+            </ul>
             <div className="flex flex-wrap gap-2 mt-2">
               {project.tags.map((tag) => (
                 <span

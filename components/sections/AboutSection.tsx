@@ -12,9 +12,9 @@ export default function AboutSection() {
 
       <AnimatedSection direction="left" delay={0.1}>
         <h2 className="font-serif text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] font-bold mb-12 max-w-3xl">
-          Engineer by trade,
+          User First,
           <br />
-          builder by nature.
+          Always.
         </h2>
       </AnimatedSection>
 
@@ -22,7 +22,7 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div className="space-y-4">
             <p className="font-sans text-sm text-muted leading-relaxed">
-              {config.bio}
+              {config.aboutBio}
             </p>
           </div>
           <div>

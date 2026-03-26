@@ -1,19 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { config } from "@/lib/data";
+
+type Status = "idle" | "loading" | "success" | "error";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<Status>("idle");
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const subject = encodeURIComponent(`Message from ${form.name}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
-    );
-    window.location.href = `mailto:${config.email}?subject=${subject}&body=${body}`;
+    setStatus("loading");
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+
+    if (res.ok) {
+      setStatus("success");
+      setForm({ name: "", email: "", message: "" });
+    } else {
+      setStatus("error");
+    }
   }
 
   const inputClass =
@@ -51,12 +61,23 @@ export default function ContactForm() {
           className={`${inputClass} resize-none`}
         />
       </div>
-      <button
-        type="submit"
-        className="font-sans text-xs tracking-widest uppercase border border-foreground px-6 py-3 hover:bg-foreground hover:text-background transition-colors"
-      >
-        Send Message
-      </button>
+
+      <div className="flex items-center gap-6">
+        <button
+          type="submit"
+          disabled={status === "loading"}
+          className="font-sans text-xs tracking-widest uppercase border border-foreground px-6 py-3 hover:bg-foreground hover:text-background transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        >
+          {status === "loading" ? "Sending..." : "Send Message"}
+        </button>
+
+        {status === "success" && (
+          <p className="font-sans text-xs text-muted">Message sent.</p>
+        )}
+        {status === "error" && (
+          <p className="font-sans text-xs text-muted">Something went wrong. Try again.</p>
+        )}
+      </div>
     </form>
   );
 }

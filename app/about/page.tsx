@@ -18,9 +18,9 @@ export default function About() {
 
       <AnimatedSection delay={0.2}>
         <h1 className="font-serif text-[clamp(2.5rem,6vw,5rem)] leading-[1.1] font-bold mb-12 max-w-3xl">
-          Engineer by trade,
+          User First,
           <br />
-          builder by nature.
+          Always.
         </h1>
       </AnimatedSection>
 
@@ -28,7 +28,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
           <div className="space-y-4">
             <p className="font-sans text-sm text-muted leading-relaxed">
-              {config.bio}
+              {config.aboutBio}
             </p>
           </div>
           <div>
@@ -70,10 +70,15 @@ export default function About() {
                 <p className="font-mono text-xs text-muted mb-3">
                   {item.company}
                 </p>
-                {item.description && (
-                  <p className="font-sans text-sm text-muted leading-relaxed">
-                    {item.description}
-                  </p>
+                {item.description.length > 0 && (
+                  <ul className="space-y-2">
+                    {item.description.map((bullet, i) => (
+                      <li key={i} className="font-sans text-sm text-muted leading-relaxed flex gap-2">
+                        <span className="text-muted/40 shrink-0">—</span>
+                        {bullet}
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </div>
             </div>
