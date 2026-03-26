@@ -66,7 +66,7 @@ export const experience: ExperienceItem[] = [
   {
     company: "Varmodel",
     role: "Software Engineer Intern",
-    period: "February 2026 — Present",
+    period: "February 2026 — ",
     description: "",
     isEducation: false,
     startYear: 2026,

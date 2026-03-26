@@ -39,11 +39,11 @@ export default function Timeline({ experience }: TimelineProps) {
 
   return (
     <>
-      {/* Desktop: split panel */}
+      {/* Desktop: rows left + sticky description right */}
       <div className="hidden lg:flex gap-12 items-start">
 
-        {/* Left — timeline rows */}
-        <div className="flex-1 min-w-0">
+        {/* Left — full-width rows */}
+        <div className="flex-1 min-w-0 lg:max-w-[56rem]">
           {experience.map((item, i) => {
             const itemStart = toMonths(item.startYear, item.startMonth);
             const itemEnd =
@@ -57,139 +57,137 @@ export default function Timeline({ experience }: TimelineProps) {
             const widthPct = ((itemEnd - itemStart) / totalSpan) * 100;
 
             return (
-              <div
+              <motion.div
                 key={i}
-                className="flex gap-6 items-start cursor-pointer group py-8 border-b border-border"
-                onMouseEnter={() => setActiveIndex(i)}
-                onClick={() => setActiveIndex(i)}
+                initial={{ opacity: 0, x: 60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: false, margin: "-80px" }}
+                transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: i * 0.06 }}
               >
-                {/* Label */}
                 <div
-                  className={`w-48 shrink-0 text-right border-r-2 pr-4 transition-colors ${
-                    isActive
-                      ? "border-foreground"
-                      : "border-border group-hover:border-foreground/30"
-                  }`}
+                  className="group flex gap-12 items-start py-8 border-b border-border hover:border-foreground/30 transition-colors cursor-pointer"
+                  onMouseEnter={() => setActiveIndex(i)}
+                  onClick={() => setActiveIndex(i)}
                 >
-                  <p
-                    className={`font-serif text-xl font-semibold leading-snug transition-colors ${
-                      isActive ? "text-foreground" : "text-muted"
-                    }`}
-                  >
-                    {item.role}
-                  </p>
-                  <p className="font-mono text-xs text-muted mt-0.5">
-                    {item.company}
-                  </p>
-                </div>
+                  {/* Period */}
+                  <span className="font-mono text-xs text-muted shrink-0 pt-1 w-48">
+                    {item.period}
+                  </span>
 
-                {/* Bar track */}
-                <div className="flex-1">
-                  {/* Year labels */}
-                  <div className="relative h-4 mb-1">
-                    {years.map((year) => {
-                      const pos =
-                        ((toMonths(year, 1) - totalStart) / totalSpan) * 100;
-                      if (pos < 0 || pos > 100) return null;
-                      return (
-                        <span
-                          key={year}
-                          className="absolute font-mono text-[10px] text-muted -translate-x-1/2"
-                          style={{ left: `${pos}%` }}
-                        >
-                          {year}
-                        </span>
-                      );
-                    })}
-                  </div>
-
-                  {/* Bar row */}
-                  <div className="relative h-6 flex items-center">
-                    {/* Grid lines */}
-                    {years.map((year) => {
-                      const pos =
-                        ((toMonths(year, 1) - totalStart) / totalSpan) * 100;
-                      if (pos < 0 || pos > 100) return null;
-                      return (
-                        <div
-                          key={year}
-                          className="absolute top-0 bottom-0 w-px bg-border"
-                          style={{ left: `${pos}%` }}
-                        />
-                      );
-                    })}
-
-                    {/* Animated bar */}
-                    <motion.div
-                      className="absolute h-2.5 origin-left"
-                      style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      viewport={{ once: false, margin: "-80px" }}
-                      transition={{
-                        duration: 0.7,
-                        ease: [0.25, 0.1, 0.25, 1],
-                        delay: i * 0.08,
-                      }}
-                    >
-                      <div
-                        className={`h-full w-full rounded-sm transition-opacity ${
-                          item.isEducation
-                            ? "border border-foreground/40 bg-foreground/10"
-                            : isActive
-                            ? "bg-foreground"
-                            : "bg-foreground/50"
-                        }`}
-                      />
-                    </motion.div>
-
-                    {/* Start dot */}
-                    <motion.div
-                      className={`absolute w-2 h-2 rounded-full -translate-x-1/2 transition-colors ${
-                        isActive ? "bg-foreground" : "bg-foreground/50"
+                  {/* Content + bar — flex-1 to maximize bar width */}
+                  <div className="flex-1 min-w-0">
+                    <p
+                      className={`font-serif text-xl font-semibold transition-colors mb-1 ${
+                        isActive ? "text-foreground" : "group-hover:text-muted"
                       }`}
-                      style={{ left: `${leftPct}%` }}
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      viewport={{ once: false, margin: "-80px" }}
-                      transition={{ delay: i * 0.08 + 0.1 }}
-                    />
+                    >
+                      {item.role}
+                    </p>
+                    <p className="font-mono text-xs text-muted mb-4">{item.company}</p>
 
-                    {/* End dot or arrow */}
-                    {isPresent ? (
-                      <motion.span
-                        className={`absolute font-mono text-sm ml-1 transition-colors ${
-                          isActive ? "text-foreground" : "text-foreground/50"
-                        }`}
-                        style={{ left: `${leftPct + widthPct}%` }}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: false, margin: "-80px" }}
-                        transition={{ delay: i * 0.08 + 0.4 }}
-                      >
-                        →
-                      </motion.span>
-                    ) : (
-                      <motion.div
-                        className={`absolute w-2 h-2 rounded-full -translate-x-1/2 transition-colors ${
-                          isActive ? "bg-foreground" : "bg-foreground/50"
-                        }`}
-                        style={{ left: `${leftPct + widthPct}%` }}
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: false, margin: "-80px" }}
-                        transition={{ delay: i * 0.08 + 0.4 }}
-                      />
-                    )}
+                    {/* Bar track */}
+                    <div>
+                      <div className="relative h-4 mb-1">
+                        {years.map((year) => {
+                          const pos =
+                            ((toMonths(year, 1) - totalStart) / totalSpan) * 100;
+                          if (pos < 0 || pos > 100) return null;
+                          return (
+                            <span
+                              key={year}
+                              className="absolute font-mono text-[10px] text-muted -translate-x-1/2"
+                              style={{ left: `${pos}%` }}
+                            >
+                              {year}
+                            </span>
+                          );
+                        })}
+                      </div>
+
+                      <div className="relative h-6 flex items-center">
+                        {years.map((year) => {
+                          const pos =
+                            ((toMonths(year, 1) - totalStart) / totalSpan) * 100;
+                          if (pos < 0 || pos > 100) return null;
+                          return (
+                            <div
+                              key={year}
+                              className="absolute top-0 bottom-0 w-px bg-border"
+                              style={{ left: `${pos}%` }}
+                            />
+                          );
+                        })}
+
+                        <motion.div
+                          className="absolute h-2.5 origin-left"
+                          style={{ left: `${leftPct}%`, width: `${widthPct}%` }}
+                          initial={{ scaleX: 0 }}
+                          whileInView={{ scaleX: 1 }}
+                          viewport={{ once: false, margin: "-80px" }}
+                          transition={{
+                            duration: 0.7,
+                            ease: [0.25, 0.1, 0.25, 1],
+                            delay: i * 0.08,
+                          }}
+                        >
+                          <div
+                            className={`h-full w-full rounded-sm ${
+                              item.isEducation
+                                ? "border border-foreground/40 bg-foreground/10"
+                                : isActive
+                                ? "bg-foreground"
+                                : "bg-foreground/50"
+                            }`}
+                          />
+                        </motion.div>
+
+                        <motion.div
+                          className={`absolute w-2 h-2 rounded-full -translate-x-1/2 ${
+                            isActive ? "bg-foreground" : "bg-foreground/50"
+                          }`}
+                          style={{ left: `${leftPct}%` }}
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: false, margin: "-80px" }}
+                          transition={{ delay: i * 0.08 + 0.1 }}
+                        />
+
+                        {isPresent ? (
+                          <motion.span
+                            className={`absolute font-mono text-sm ml-1 ${
+                              isActive ? "text-foreground" : "text-foreground/50"
+                            }`}
+                            style={{ left: `${leftPct + widthPct}%` }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: false, margin: "-80px" }}
+                            transition={{ delay: i * 0.08 + 0.4 }}
+                          >
+                            →
+                          </motion.span>
+                        ) : (
+                          <motion.div
+                            className={`absolute w-2 h-2 rounded-full -translate-x-1/2 ${
+                              isActive ? "bg-foreground" : "bg-foreground/50"
+                            }`}
+                            style={{ left: `${leftPct + widthPct}%` }}
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: false, margin: "-80px" }}
+                            transition={{ delay: i * 0.08 + 0.4 }}
+                          />
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>
 
-        {/* Right — sticky detail panel */}
-        <div className="flex-1 min-w-0 sticky top-24 self-start pt-8">
+        {/* Right — sticky description panel */}
+        <div className="w-[32rem] shrink-0 sticky top-24 self-start pt-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndex}
@@ -198,36 +196,34 @@ export default function Timeline({ experience }: TimelineProps) {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <div className="max-w-sm">
-                <p className="font-serif text-xl font-semibold leading-snug mb-2">
-                  {active.role}
+              <p className="font-serif text-xl font-semibold leading-snug mb-1">
+                {active.role}
+              </p>
+              <p className="font-mono text-xs text-muted">{active.company}</p>
+              <p className="font-mono text-xs text-muted/60 mt-0.5 mb-5">
+                {active.period}
+              </p>
+              <div className="border-t border-border mb-5" />
+              {active.description ? (
+                <p className="font-sans text-sm text-muted leading-relaxed">
+                  {active.description}
                 </p>
-                <p className="font-mono text-xs text-muted">{active.company}</p>
-                <p className="font-mono text-xs text-muted/60 mt-0.5">
-                  {active.period}
+              ) : (
+                <p className="font-sans text-sm text-muted/40 italic">
+                  {active.isEducation ? "Education" : "—"}
                 </p>
-                <div className="border-t border-border mt-5 mb-5" />
-                {active.description ? (
-                  <p className="font-sans text-sm text-muted leading-relaxed">
-                    {active.description}
-                  </p>
-                ) : (
-                  <p className="font-sans text-sm text-muted/40 italic">
-                    {active.isEducation ? "Education" : "—"}
-                  </p>
-                )}
-              </div>
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
-      {/* Mobile / tablet fallback */}
+      {/* Mobile fallback */}
       <div className="lg:hidden">
         {experience.map((item, i) => (
           <div key={i} className="flex flex-col gap-1 py-8 border-b border-border">
             <p className="font-mono text-xs text-muted">{item.period}</p>
-            <p className="font-serif text-lg font-semibold">{item.role}</p>
+            <p className="font-serif text-xl font-semibold">{item.role}</p>
             <p className="font-mono text-xs text-muted">{item.company}</p>
             {item.description && (
               <p className="font-sans text-sm text-muted leading-relaxed mt-2">

@@ -4,7 +4,7 @@ import { experience } from "@/lib/data";
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="px-8 lg:px-16 py-32 max-w-5xl border-t border-border">
+    <section id="experience" className="px-8 lg:px-16 py-32 border-t border-border">
       <AnimatedSection direction="left">
         <p className="font-mono text-xs tracking-widest uppercase text-muted mb-8">
           Experience
