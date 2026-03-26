@@ -1,0 +1,30 @@
+---
+title: Internal Developer Platform
+description: Self-service infrastructure and deployment platform for engineering teams.
+year: "2023"
+tags: ["TypeScript", "React", "Terraform", "AWS"]
+---
+
+## Overview
+
+An internal developer platform (IDP) that gives engineers self-service access to infrastructure provisioning, service deployment, and observability — without filing ops tickets.
+
+## Problem
+
+Our engineering org was spending thousands of engineering hours per quarter waiting for infrastructure changes. The bottleneck was a small platform team handling every request manually.
+
+## Solution
+
+Designed and built a platform UI backed by a declarative infrastructure API. Engineers define their service requirements in a simple form or YAML config, and the platform handles provisioning via Terraform and deployment via GitHub Actions.
+
+Key capabilities:
+- One-click service provisioning (RDS, SQS, S3, ECS)
+- Environment management (dev, staging, prod)
+- Secret management via AWS Secrets Manager
+- Deployment history and rollback
+
+## Impact
+
+- Reduced time-to-provision from 5 days → 15 minutes
+- Eliminated 90% of platform team toil
+- Onboarded 60+ engineering teams within 3 months

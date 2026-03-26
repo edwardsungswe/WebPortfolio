@@ -1,0 +1,7 @@
+	•	Frontend/framework: Next.js
+	•	Language: TypeScript
+	•	Styling: Tailwind CSS
+	•	Deployment: Vercel
+	•	Content: MDX
+	•	Optional animation: Framer Motion
+	•	Optional analytics: Vercel Analytics or Plausible

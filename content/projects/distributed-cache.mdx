@@ -1,0 +1,40 @@
+---
+title: Distributed Cache System
+description: A high-performance distributed caching layer built in Go.
+year: "2024"
+tags: ["Go", "Redis", "gRPC", "Kubernetes"]
+---
+
+## Overview
+
+A distributed in-memory caching system designed for high-throughput workloads, supporting horizontal scaling across multiple nodes with automatic failover.
+
+## Problem
+
+Our monolithic caching layer was becoming a single point of failure. Under load, cache node failures would cause cascading latency spikes across all downstream services.
+
+## Solution
+
+Built a distributed cache that uses consistent hashing to distribute keys across nodes. When a node fails, traffic is automatically redistributed with minimal cache churn.
+
+Key features:
+- Consistent hashing ring with virtual nodes
+- gRPC-based inter-node communication
+- Automatic health checks and leader election
+- Real-time replication for fault tolerance
+
+## Technical Details
+
+The system is written in Go and deployed as a StatefulSet in Kubernetes. Each node exposes a gRPC API for cache operations and a separate gossip protocol port for cluster membership.
+
+```go
+// Consistent hash ring initialization
+ring := hashring.New(nodes)
+node, err := ring.GetNode(cacheKey)
+```
+
+## Results
+
+- Reduced p99 latency by 40% under peak load
+- Zero downtime during node failures
+- 10x improvement in cache hit rate consistency across regions
